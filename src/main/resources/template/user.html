@@ -7,6 +7,7 @@
     <link rel="stylesheet"
           th:href="@{https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
 </head>
 <body>
 
@@ -39,11 +40,26 @@
                             <tbody>
                             <tr>
                                 <td>
-                                    <label>お名前（漢字）</label>
+                                    <label>姓（漢字）</label>
                                     <p style="color:red;">＊</p>
                                 </td>
                                 <td>
-                                    <p>例：ＴＩＳ　太郎</p>
+                                    <p>例：ＴＩＳ</p>
+                                    <div class="field" th:classappend="${errors.hasError('kanjiName')} ? 'error'">
+                                        <input type="text" name="kanjiName" th:value="${form.kanjiName}"/>
+                                        <p th:if="${errors.hasError('kanjiName')}"
+                                           th:text="${errors.getMessage('kanjiName')}" class="error-message">
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>名（漢字）</label>
+                                    <p style="color:red;">＊</p>
+                                </td>
+                                <td>
+                                    <p>例：太郎</p>
                                     <div class="field" th:classappend="${errors.hasError('kanjiName')} ? 'error'">
                                         <input type="text" name="kanjiName" th:value="${form.kanjiName}"/>
                                         <p th:if="${errors.hasError('kanjiName')}"
@@ -54,11 +70,26 @@
                             </tr>
                             <tr>
                                 <td style="white-space: nowrap;">
-                                    <label>お名前（カタカナ）</label>
+                                    <label>姓（カタカナ）</label>
                                     <p style="color:red;">＊</p>
                                 </td>
                                 <td>
-                                    <p>例：ティーアイエス　タロウ</p>
+                                    <p>例：ティーアイエス</p>
+                                    <div class="field" th:classappend="${errors.hasError('kanaName')} ? 'error'">
+                                        <input type="text" name="kanaName" th:value="${form.kanaName}"/>
+                                        <p th:if="${errors.hasError('kanaName')}"
+                                           th:text="${errors.getMessage('kanaName')}" class="error-message">
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="white-space: nowrap;">
+                                    <label>名（カタカナ）</label>
+                                    <p style="color:red;">＊</p>
+                                </td>
+                                <td>
+                                    <p>例：タロウ</p>
                                     <div class="field" th:classappend="${errors.hasError('kanaName')} ? 'error'">
                                         <input type="text" name="kanaName" th:value="${form.kanaName}"/>
                                         <p th:if="${errors.hasError('kanaName')}"
@@ -69,11 +100,26 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <label>お名前（ローマ字）</label>
+                                    <label>姓（ローマ字）</label>
                                     <p style="color:red;">＊</p>
                                 </td>
                                 <td>
-                                    <p>例：TIS TAROU</p>
+                                    <p>例：TIS</p>
+                                    <div class="field" th:classappend="${errors.hasError('alphabetName')} ? 'error'">
+                                        <input type="text" name="alphabetName" th:value="${form.alphabetName}"/>
+                                        <p th:if="${errors.hasError('alphabetName')}"
+                                           th:text="${errors.getMessage('alphabetName')}" class="error-message">
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label>名（ローマ字）</label>
+                                    <p style="color:red;">＊</p>
+                                </td>
+                                <td>
+                                    <p>例：TAROU</p>
                                     <div class="field" th:classappend="${errors.hasError('alphabetName')} ? 'error'">
                                         <input type="text" name="alphabetName" th:value="${form.alphabetName}"/>
                                         <p th:if="${errors.hasError('alphabetName')}"
@@ -118,34 +164,54 @@
                             </tr>
                             <tr>
                                 <td>
+
                                     <label>郵便番号（半角）</label>
                                     <p style="color:red;">＊</p>
                                 </td>
                                 <td>
                                     <p>例：123-4567</p>
-                                    <div class="field" th:classappend="${errors.hasError('zipCode')} ? 'error'">
-                                        <input type="text" class="zipcode" name="zipCode" th:value="${form.zipCode}"/>
-                                        <p th:if="${errors.hasError('zipCode')}"
-                                           th:text="${errors.getMessage('zipCode')}" class="error-message">
-                                        </p>
-                                    </div>
+                                    <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+                                    <input type="text" name="zip21" size="4" maxlength="3"> － <input type="text" name="zip22" size="5" maxlength="4" onKeyUp="AjaxZip3.zip2addr('zip21','zip22','pref21','addr21','strt21');">
+                                    <p th:if="${errors.hasError('dateOfBirth')}"
+                                       th:text="${errors.getMessage('dateOfBirth')}" class="error-message">
+                                    </p>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <label>ご住所（全角）</label>
+                                <label>住所（全角）</label>
                                     <p style="color:red;">＊</p>
                                 </td>
                                 <td>
-                                    <p>例：東京都新宿区西新宿８－１７－１</p>
-                                    <div class="field" th:classappend="${errors.hasError('address')} ? 'error'">
-                                        <input type="text" name="address" th:value="${form.address}"/>
-                                        <p th:if="${errors.hasError('address')}"
-                                           th:text="${errors.getMessage('address')}" class="error-message">
-                                        </p>
-                                    </div>
+                                    <input type="text" name="pref21" size="40">
+                                    <input type="text" name="addr21" size="40">
+                                    <input type="text" name="strt21" size="40">
+                                    <p th:if="${errors.hasError('dateOfBirth')}"
+                                       th:text="${errors.getMessage('dateOfBirth')}" class="error-message">
+                                    </p>
                                 </td>
                             </tr>
+                                    <!--
+                                  <div class="field" th:classappend="${errors.hasError('zipCode')} ? 'error'">
+                                      <input type="text" class="zipcode" name="zipCode" th:value="${form.zipCode}"/>
+                                      <p th:if="${errors.hasError('zipCode')}"
+                                         th:text="${errors.getMessage('zipCode')}" class="error-message">
+                                      </p>
+                                  </div>
+                              </td>
+                          </tr>-->
+                          <tr>
+
+                                  <!--
+                                  <p>例：東京都新宿区西新宿８－１７－１</p>
+                                  <div class="field" th:classappend="${errors.hasError('address')} ? 'error'">
+                                      <input type="text" name="address" th:value="${form.address}"/>
+                                      <p th:if="${errors.hasError('address')}"
+                                         th:text="${errors.getMessage('address')}" class="error-message">
+                                      </p>
+                                  </div>
+                              </td>
+                          </tr>-->
                             <tr>
                                 <td>
                                     <label>自宅電話番号（半角）</label>

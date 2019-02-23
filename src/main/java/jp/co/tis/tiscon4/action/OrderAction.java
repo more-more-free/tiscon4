@@ -134,7 +134,7 @@ public class OrderAction {
 
         BeanUtil.copy(form, insOrder);
 
-        UniversalDao.insert(insOrder);
+        //UniversalDao.insert(insOrder);
 
         return new HttpResponse("redirect://completed");
     }

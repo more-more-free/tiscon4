@@ -11,6 +11,7 @@ import jp.co.tis.tiscon4.core.validation.validator.JapaneseTelNumber;
 import jp.co.tis.tiscon4.core.validation.validator.MailAddress;
 import jp.co.tis.tiscon4.core.validation.validator.YYYYMMDD;
 import jp.co.tis.tiscon4.core.validation.validator.ZipNumber;
+import nablarch.common.date.YYYYMM;
 import nablarch.core.validation.ee.Digits;
 import nablarch.core.validation.ee.Length;
 import nablarch.core.validation.ee.SystemChar;
@@ -44,7 +45,7 @@ public class Tiscon4DomainBean {
     private String gender;
 
     /** 生年月日 */
-    @YYYYMMDD()
+    @SystemChar(charsetDef = "半角数字", message = "{domain.illegalCharacter}")
     private String dateOfBirth;
 
     /** 郵便番号 */

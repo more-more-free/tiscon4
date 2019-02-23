@@ -8,10 +8,16 @@ import nablarch.core.validation.ee.Required;
 
 import javax.validation.constraints.AssertTrue;
 import java.io.Serializable;
+import java.util.*;
 
 public class UserForm implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /** 生年月日用配列 */
+    private List<String> years = new ArrayList<>();
+    private List<String> months = new ArrayList<>();
+    private List<String> days = new ArrayList<>();
 
     /** 漢字氏名 */
     @Required
@@ -34,27 +40,27 @@ public class UserForm implements Serializable {
     private String gender;
 
     /** 年 */
-    @Required
-//    @Domain("dateOfBirth")
+    //@Required
+    @Domain("dateOfBirth")
     private String year;
 
     /** 月 */
-    @Required
-//n    @Domain("dateOfBirth")
+    //@Required
+    @Domain("dateOfBirth")
     private String month;
 
     /** 日 */
-    @Required
-//    @Domain("dateOfBirth")
+    //@Required
+    @Domain("dateOfBirth")
     private String day;
 
-//    /** 生年月日 */
-//    @Required
-//    @Domain("dateOfBirth")
-//    private String dateOfBirth;
+    /** 生年月日 */
+    //@Required
+    //@Domain("dateOfBirth")
+    //private String dateOfBirth;
 
     /** 郵便番号 */
-    @Required
+    //@Required
     @Domain("zipCode")
     private String zipCode;
 
@@ -106,6 +112,31 @@ public class UserForm implements Serializable {
     @Domain("medicalHistory")
     private String medicalHistory;
 
+    public UserForm(){
+        years.add("");
+        for(int i = 1920; i < 2020; i++) {
+            years.add(""+i);
+        }
+        for(int i = 1; i < 13; i++) {
+            months.add(""+i);
+        }
+        for(int i = 1; i < 32; i++) {
+            days.add(""+i);
+        }
+    }
+
+    public List<String> getDays() {
+        return days;
+    }
+
+    public List<String> getMonths() {
+        return months;
+    }
+
+    public List<String> getYears() {
+        return years;
+    }
+
     public String getKanjiName() {
         return kanjiName;
     }
@@ -130,17 +161,12 @@ public class UserForm implements Serializable {
         this.alphabetName = alphabetName;
     }
 
-//    public String getDateOfBirth() {
-//        return dateOfBirth;
-//    }
+    //public String getDateOfBirth() { return dateOfBirth; }
 
-//    public void setDateOfBirth(String dateOfBirth) {
-//        this.dateOfBirth = dateOfBirth;
-//    }
+    //public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
 
     public String getYear() {
-        return year;
-    }
+        return year;    }
 
     public void setYear(String year) {
         this.year = year;
